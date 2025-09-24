@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🧮 Loan Calculator - MoneyMarket</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    function calculateLoan() {
+      const amount = parseFloat(document.getElementById("amount").value);
+      const rate = parseFloat(document.getElementById("rate").value) / 100 / 12;
+      const months = parseInt(document.getElementById("months").value);
+      const payment = (amount * rate) / (1 - Math.pow(1 + rate, -months));
+      if (!isNaN(payment)) {
+        document.getElementById("result").innerText = "💳 Estimated Monthly Payment: ₹" + payment.toFixed(2);
+      } else {
+        document.getElementById("result").innerText = "❌ Please enter valid numbers.";
+      }
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>🧮 Loan Calculator</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">🏠 Home</a>
+    <a href="about.html">ℹ️ About</a>
+    <a href="calculator.html">🧮 Calculator</a>
+    <a href="apply.html">📝 Apply</a>
+    <a href="contact.html">📞 Contact</a>
+  </nav>
+
+  <section>
+    <h2>📊 Estimate Your Monthly Payments</h2>
+    <label>💵 Loan Amount (₹)</label>
+    <input type="number" id="amount" placeholder="5000" />
+
+    <label>📈 Interest Rate (APR %)</label>
+    <input type="number" id="rate" placeholder="7.5" />
+
+    <label>📅 Term Length (Months)</label>
+    <input type="number" id="months" placeholder="36" />
+
+    <button onclick="calculateLoan()">🧮 Calculate</button>
+    <p id="result"></p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 MoneyMarket. All rights reserved.</p>
+    <p><strong>📍 Address:</strong> Square Trade, Sakinaka, Andheri (East), Mumbai - 400072</p>
+    <p><strong>📧 Email:</strong> support@moneymarket.com &nbsp;&nbsp; <strong>📞 Phone:</strong> 1-800-555-LOAN</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>📝 Apply for a Loan - MoneyMarket</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>📝 Loan Application</h1>
+    <p>Fill out the form below to apply for a personal loan.</p>
+  </header>
+
+  <nav>
+    <a href="index.html">🏠 Home</a>
+    <a href="about.html">ℹ️ About</a>
+    <a href="calculator.html">🧮 Calculator</a>
+    <a href="apply.html">📝 Apply</a>
+    <a href="contact.html">📞 Contact</a>
+  </nav>
+
+  <section>
+    <h2>📄 Loan Application Form</h2>
+
+    <form action="https://formspree.io/f/your-form-id" method="POST">
+      <label>👤 Full Name</label>
+      <input type="text" name="Full Name" required />
+
+      <label>🏢 Company Name</label>
+      <input type="text" name="Company Name" />
+
+      <label>📧 Email Address</label>
+      <input type="email" name="Email" required />
+
+      <label>📞 Phone Number</label>
+      <input type="tel" name="Phone Number" required />
+
+      <label>🏙️ City</label>
+      <input type="text" name="City" required />
+
+      <label>📮 Pincode</label>
+      <input type="text" name="Pincode" pattern="\d{6}" maxlength="6" placeholder="Postal Code" required />
+      
+      <label>💵 Loan Amount</label>
+      <input type="number" name="Loan Amount" required />
+
+      <label>🎯 Loan Purpose</label>
+      <select name="Loan Purpose" required>
+        <option value="">-- Select Purpose --</option>
+        <option>Debt Consolidation</option>
+        <option>Home Improvement</option>
+        <option>Medical Expenses</option>
+        <option>Education</option>
+        <option>Other</option>
+      </select>
+
+      <label>💰 Monthly Income</label>
+      <input type="number" name="Monthly Income" required />
+
+      <label>📊 Credit Score</label>
+      <select name="Credit Score" required>
+        <option value="">-- Select Credit Score --</option>
+        <option>Excellent (720+)</option>
+        <option>Good (660–719)</option>
+        <option>Fair (600–659)</option>
+        <option>Poor (<600)</option>
+      </select>
+
+      <label>🗒️ Additional Notes</label>
+      <textarea name="Message" rows="4"></textarea>
+
+      <button type="submit">🚀 Submit Application</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 MoneyMarket. All rights reserved.</p>
+    <p><strong>📍 Address:</strong> Square Trade, Sakinaka, Andheri (East), Mumbai - 400072</p>
+    <p><strong>📧 Email:</strong> support@moneymarket.com &nbsp;&nbsp; <strong>📞 Phone:</strong> 1-800-555-LOAN</p>
+  </footer>
+</body>
+</html>
