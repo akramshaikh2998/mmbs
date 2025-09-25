@@ -22,30 +22,31 @@
   <section>
     <h2>📄 Loan Application Form</h2>
 
-    <form action="https://formspree.io/f/your-form-id" method="POST">
+    <!-- Use JS fetch to Netlify Function instead of Formspree -->
+    <form id="loanForm">
       <label>👤 Full Name</label>
-      <input type="text" name="Full Name" required />
+      <input type="text" name="name" required />
 
       <label>🏢 Company Name</label>
-      <input type="text" name="Company Name" />
+      <input type="text" name="company" />
 
       <label>📧 Email Address</label>
-      <input type="email" name="Email" required />
+      <input type="email" name="email" required />
 
       <label>📞 Phone Number</label>
-      <input type="tel" name="Phone Number" required />
+      <input type="tel" name="phone" required />
 
       <label>🏙️ City</label>
-      <input type="text" name="City" required />
+      <input type="text" name="city" required />
 
       <label>📮 Pincode</label>
-      <input type="text" name="Pincode" pattern="\d{6}" maxlength="6" placeholder="Postal Code" required />
+      <input type="text" name="pincode" pattern="\d{6}" maxlength="6" placeholder="Postal Code" required />
       
       <label>💵 Loan Amount</label>
-      <input type="number" name="Loan Amount" required />
+      <input type="number" name="loanAmount" required />
 
       <label>🎯 Loan Purpose</label>
-      <select name="Loan Purpose" required>
+      <select name="loanPurpose" required>
         <option value="">-- Select Purpose --</option>
         <option>Debt Consolidation</option>
         <option>Home Improvement</option>
@@ -55,19 +56,19 @@
       </select>
 
       <label>💰 Monthly Income</label>
-      <input type="number" name="Monthly Income" required />
+      <input type="number" name="monthlyIncome" required />
 
       <label>📊 Credit Score</label>
-      <select name="Credit Score" required>
+      <select name="creditScore" required>
         <option value="">-- Select Credit Score --</option>
         <option>Excellent (720+)</option>
         <option>Good (660–719)</option>
         <option>Fair (600–659)</option>
-        <option>Poor (<600)</option>
+        <option>Poor (&lt;600)</option>
       </select>
 
       <label>🗒️ Additional Notes</label>
-      <textarea name="Message" rows="4"></textarea>
+      <textarea name="message" rows="4"></textarea>
 
       <button type="submit">🚀 Submit Application</button>
     </form>
@@ -78,5 +79,34 @@
     <p><strong>📍 Address:</strong> Square Trade, Sakinaka, Andheri (East), Mumbai - 400072</p>
     <p><strong>📧 Email:</strong> support@moneymarket.com &nbsp;&nbsp; <strong>📞 Phone:</strong> 1-800-555-LOAN</p>
   </footer>
+
+  <script>
+    const loanForm = document.getElementById("loanForm");
+    loanForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = Object.fromEntries(new FormData(loanForm));
+
+      try {
+        const res = await fetch("/.netlify/functions/sendEmail", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+
+        const result = await res.json();
+
+        if (res.ok) {
+          alert("✅ Application submitted successfully!");
+          loanForm.reset();
+        } else {
+          alert("❌ Failed: " + (result.error || "Something went wrong"));
+        }
+      } catch (err) {
+        alert("❌ Failed to send application. Try again later.");
+        console.error(err);
+      }
+    });
+  </script>
 </body>
 </html>
